@@ -11,8 +11,11 @@ using namespace std;
 int main()
 {
     GameFunction game;
-    Player player = new Player(100, 20, 60);
+    Player player(100, 20, 60);
+
     game.ConstructConsole(160, 160, 8, 8);
+    player.playerPosition(20, 80);
+
     game.Start();
 
 
