@@ -8,13 +8,42 @@
 
 using namespace std;
 
+class GameFunction : public olcConsoleGameEngine{
+public:
+	GameFunction() {
+
+	}
+
+private:
+
+
+
+
+protected:
+	bool OnUserCreate() override {
+		return true;
+
+	}
+
+	bool OnUserUpdate(float fElapsedTime) override {
+		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
+		Fill(10, 5 * 6, 20, 5 * 6 + 10, PIXEL_SOLID, 5);
+
+		return true;
+
+		Player::playerPosition();
+	}
+
+};
+
+
 int main()
 {
     GameFunction game;
     Player player(100, 20, 60);
 
     game.ConstructConsole(160, 160, 8, 8);
-    player.playerPosition(20, 80);
+    player.playerPosition(/*20, 80*/);
 
     game.Start();
 
