@@ -3,12 +3,18 @@
 
 #include <iostream>
 #include "olcConsoleGameEngine.h"
+#include "GameFunction.h"
+#include "Player.h"
 
 using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    GameFunction game;
+    Player player = new Player(100, 20, 60);
+    game.ConstructConsole(160, 160, 8, 8);
+    game.Start();
+
 
     return 0;
 }
