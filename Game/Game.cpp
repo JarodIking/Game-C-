@@ -1,22 +1,21 @@
 // Game.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
 #include "olcConsoleGameEngine.h"
 #include "GameFunction.h"
 #include "Player.h"
 
+
+
 using namespace std;
+
+
+
 
 class GameFunction : public olcConsoleGameEngine{
 public:
 	GameFunction() {
-
 	}
-
-private:
-
-
 
 
 protected:
@@ -27,11 +26,12 @@ protected:
 
 	bool OnUserUpdate(float fElapsedTime) override {
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
-		Fill(10, 5 * 6, 20, 5 * 6 + 10, PIXEL_SOLID, 5);
+
+		Fill(Player.RplayerPositionX, 5 * 29, Player.RplayerPositionY, 5 * 29 + 10, PIXEL_SOLID, 5);
+
 
 		return true;
 
-		Player::playerPosition();
 	}
 
 };
@@ -39,13 +39,33 @@ protected:
 
 int main()
 {
+
+
+
+	string name = "stirng";
+	
+	int var = 0;
+
     GameFunction game;
-    Player player(100, 20, 60);
+    Player player(100, 70, 80);
+
 
     game.ConstructConsole(160, 160, 8, 8);
-    player.playerPosition(/*20, 80*/);
-
     game.Start();
+
+	//player movement
+	switch (cin.get()) {
+	case 'a':
+		player.playerPositionLeft(10);
+		break;
+	case 'd':
+		player.playerPositionRight(10);
+		break;
+
+	default:
+		return 0;
+		break;
+	}
 
 
     return 0;
