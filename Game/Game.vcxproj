@@ -142,7 +142,6 @@
     <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameFunction.h" />
     <ClInclude Include="olcConsoleGameEngine.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
