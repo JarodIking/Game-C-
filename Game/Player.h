@@ -1,7 +1,6 @@
 #pragma once
 
-class Player{
-public:
+struct Player{
 	//constructor
 	inline Player(int health, int positionX, int positionY) {
 		playerHealth = health;

@@ -31,6 +31,15 @@ protected:
 
 		Fill(p.playerPositionX, 5 * 29, p.playerPositionY, 5 * 29 + 10, PIXEL_SOLID, 5);
 
+		Fill(10, 6 * 20, 30, 6 * 20 + 10, PIXEL_SOLID, 6);
+		Fill(50, 6 * 20, 70, 6 * 20 + 10, PIXEL_SOLID, 6);
+		Fill(90, 6 * 20, 110, 6 * 20 + 10, PIXEL_SOLID, 6);
+		Fill(130, 6 * 20, 150, 6 * 20 + 10, PIXEL_SOLID, 6);
+
+
+
+
+
 		if (IsFocused()) {
 			if (GetKey(VK_LEFT).bHeld) {
 				p.playerPositionLeft(1);
@@ -40,9 +49,6 @@ protected:
 				p.playerPositionRight(1);
 			}
 		}
-
-
-
 
 		return true;
 
