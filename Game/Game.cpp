@@ -1,6 +1,7 @@
 // Game.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#include <iostream>
 #include "olcConsoleGameEngine.h"
 #include "Player.h"
 
@@ -13,12 +14,14 @@ using namespace std;
 
 class GameFunction : public olcConsoleGameEngine{
 public:
-	GameFunction() {
-	}
+	GameFunction(Player& player) : p(player) {}
+	Player& p;
 
 
 protected:
 	bool OnUserCreate() override {
+
+
 		return true;
 
 	}
@@ -26,45 +29,53 @@ protected:
 	bool OnUserUpdate(float fElapsedTime) override {
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
 
-		Fill(Player.RplayerPositionX, 5 * 29, Player.RplayerPositionY, 5 * 29 + 10, PIXEL_SOLID, 5);
+		Fill(p.playerPositionX, 5 * 29, p.playerPositionY, 5 * 29 + 10, PIXEL_SOLID, 5);
+
+		if (IsFocused()) {
+			if (GetKey(VK_LEFT).bHeld) {
+				p.playerPositionLeft(1);
+			}
+
+			if (GetKey(VK_RIGHT).bHeld) {
+				p.playerPositionRight(1);
+			}
+		}
+
+
 
 
 		return true;
 
 	}
 
+
 };
 
 
 int main()
 {
-
-
-
-	string name = "stirng";
 	
 	int var = 0;
-
-    GameFunction game;
-    Player player(100, 70, 80);
-
+	Player player(100, 70, 80);
+    GameFunction game(player);
 
     game.ConstructConsole(160, 160, 8, 8);
     game.Start();
 
-	//player movement
-	switch (cin.get()) {
-	case 'a':
-		player.playerPositionLeft(10);
-		break;
-	case 'd':
-		player.playerPositionRight(10);
-		break;
 
-	default:
-		return 0;
-		break;
-	}
+	//player movement
+	//switch (cin.get()) {
+	//	case 'a':
+	//		game.left = 'a';
+	//		break;
+	//	case 'd':
+	//		game.right = 'd';;
+	//		break;
+
+	//	default:
+
+	//		break;
+	//}
 
 
     return 0;
