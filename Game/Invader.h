@@ -16,7 +16,13 @@ struct Invader {
 	int invaderHealth;
 	double horizontalX;
 	double horizontalY;
-
 	double verticalX;
 	double verticalY;
+
+	//updated variables
+	double UhorizontalX;
+	double UhorizontalY;
+	double UverticalX;
+	double UverticalY;
+
 };

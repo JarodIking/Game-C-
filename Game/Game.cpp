@@ -75,6 +75,10 @@ public:
 	bool k;
 	double l;
 
+
+	double x;
+	double y;
+
 	//bullet collision variables
 	bool topDown = false;
 	bool leftRight = false;
@@ -123,7 +127,12 @@ protected:
 
 		//load invaders
 		if (i.invaderHealth != 0) {
-			Fill(i.horizontalX + j, 7.1 * i.verticalX + l, i.horizontalY + j, 7 * i.verticalY + 10 + l, PIXEL_SOLID, 7);
+			i.UhorizontalX = i.horizontalX + j;
+			i.UverticalX = 7 * i.verticalX + l;
+			i.UhorizontalY = i.horizontalY + j;
+			i.UverticalY = 7 * i.verticalY + 10 + l;
+			Fill(i.UhorizontalX, i.UverticalX, i.UhorizontalY, i.UverticalY, PIXEL_SOLID, 7);
+
 		}
 
 		Fill(i1.horizontalX + j, 7 * i1.verticalX + l, i1.horizontalY + j, 7 * i1.verticalY + 10 + l, PIXEL_SOLID, 7);
@@ -180,12 +189,12 @@ protected:
 		}
 
 		//check if bullet hit an invader
-		if (b.bulletHX > i.horizontalX && b.bulletHX < i.horizontalY) {
+		if (b.bulletHX > i.UhorizontalX && b.bulletHY < i.UhorizontalY) {
 			leftRight = true;
 			Fill(10, 6 * 10, 20, 6 * 10 + 10, PIXEL_SOLID, 6);
 		}
 
-		if (b.bulletVY < i.verticalY) {
+		if (b.bulletVY > i.UverticalY) {
 			topDown = true;
 			Fill(30, 3 * 10, 40, 3 * 10 + 10, PIXEL_SOLID, 3);
 
