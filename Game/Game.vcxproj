@@ -144,7 +144,9 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Cover.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Invader.h" />
+    <ClInclude Include="Location.h" />
     <ClInclude Include="olcConsoleGameEngine.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>

@@ -1,31 +1,16 @@
 #pragma once
+#include "GameObject.h"
+using namespace std;
 
-struct Player{
+struct Player : public GameObject{
 	//constructor
-	inline Player(int health, int positionX, int positionY) {
-		playerHealth = health;
-		playerPositionX = positionX;
-		playerPositionY = positionY;
+	Player(Location* l) : GameObject(l, 100, 20, 30) {
 
 	}
-	
+
 	//player variables
-	int playerHealth;
-	int playerPositionX;
-	int playerPositionY;
 
-	//player functions
-	void playerPositionLeft(int num) {
-		playerPositionX -= num;
-		playerPositionY -= num;
 
-	}
-
-	void playerPositionRight(int num) {
-		playerPositionY += num;
-		playerPositionX += num;
-
-	}
 
 
 

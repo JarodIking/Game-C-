@@ -1,24 +1,8 @@
 #pragma once
-struct Bullet {
-	Bullet(double vx, double vy, int hx, int hy) {
-		bulletVY = vx;
-		bulletVX = vy;
-
-		bulletHY = hx;
-		bulletHX = hy;
+#include "GameObject.h"
+using namespace std;
+struct Bullet : public GameObject {
+	Bullet(Location* l) : GameObject(l, 100, 10, 20, true){
+	
 	}
-
-	double bulletVX;
-	double bulletVY;
-
-	int bulletHX;
-	int bulletHY;
-
-	bool bState = false;
-
-	bool bulletState(bool state) {
-		return bState = state;
-	}
-
-
 };

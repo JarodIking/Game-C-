@@ -1,28 +1,13 @@
 #pragma once
+#include "GameObject.h"
 
-struct Invader {
-	Invader(int health, double hX, double hY, double vX, double vY) {
-		//initiate position and health
-		horizontalX = hX;
-		horizontalY = hY;
+using namespace std;
+struct Invader : public GameObject {
+	Invader(Location* l, double height, double witdh) : GameObject(l, 1, height, width) {
 
-		verticalX = vX;
-		verticalY = vY;
-
-		invaderHealth = health;
 	}
 
-	//position variables
-	int invaderHealth;
-	double horizontalX;
-	double horizontalY;
-	double verticalX;
-	double verticalY;
+	//variables
 
-	//updated variables
-	double UhorizontalX;
-	double UhorizontalY;
-	double UverticalX;
-	double UverticalY;
 
 };
