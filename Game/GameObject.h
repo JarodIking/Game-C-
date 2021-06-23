@@ -2,9 +2,10 @@
 #include <iostream>
 #include "Location.h"
 
+
 using namespace std;
 
-struct GameObject  {
+struct GameObject {
 	GameObject(Location* location, int Health, double Height, double Width, bool Invincible = false ) : L(location) {
 		health = Health;
 		invincible = Invincible;
@@ -22,6 +23,13 @@ struct GameObject  {
 
 	double height;
 	double width;
+
+	enum objectType {
+		player,
+		bullet,
+		cover,
+		invader
+	};
 
 	//methods
 
@@ -49,9 +57,6 @@ struct GameObject  {
 
 
 
-	void Draw() {
-
-	}
 
 	bool IsCollided() {
 		return true;

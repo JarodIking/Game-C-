@@ -2,11 +2,13 @@
 //
 
 #include <iostream>
+#include <vector>
 #include "olcConsoleGameEngine.h"
 #include "Player.h"
 #include "Cover.h"
 #include "Invader.h"
 #include "Bullet.h"
+#include "GameObject.h"
 
 
 
@@ -14,28 +16,51 @@ using namespace std;
 
 class GameFunction : public olcConsoleGameEngine{
 public:
-	GameFunction(Player* player, Cover* cover) : P(player), C(cover){}
+	GameFunction(){}
 
 	//class variables
-	Player* P;
-	Cover* C;
-
-	////invader movement variables
-	//double j;
-	//bool k;
-	//double l;
+	list<GameObject*> Covers;
+	list<GameObject*> Invaders;
+	list<GameObject*> Bullets;
 
 
-	//double x;
-	//double y;
+	Player* player;
 
-	////bullet collision variables
-	//bool topDown = true;
-	//bool leftRight = false;
-
-
+	int i;
 protected:
+	void Draw() {
+		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
+
+		DrawObjects(Covers);
+		DrawObjects(Invaders);
+		DrawObjects(Bullets);
+
+		Fill(player->L->X, player->L->Y, player->L->X + player->width,player->L->Y + player->height, PIXEL_SOLID, 5);
+	}
+
+	void DrawObjects(list<GameObject*>& objects) {
+		for (GameObject* object : objects) {
+			//check doesnt work
+			if (object != NULL && object->L != NULL)
+				if (!object->DeadState())
+					Fill(object->L->X, object->L->Y, object->L->X + object->width, object->L->Y + object->height, PIXEL_SOLID, 6);
+		}
+
+	}
+
+
 	bool OnUserCreate() override {
+		Location* locationPlayer = new Location(10, 140);
+		player = new Player(locationPlayer);
+
+
+		Location* locationCover = new Location(10, 120);
+		Cover* cover0 = new Cover(locationCover, 5, 25);
+		Covers.push_back(cover0);
+
+		Location* LocationInvader0 = new Location(10, 100);
+		Invader* invader0 = new Invader(LocationInvader0, 10, 20);
+		Invaders.push_back(invader0);
 
 
 		return true;
@@ -43,26 +68,38 @@ protected:
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override {
-		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
 
-		//load player
-		Fill(P->L->X, P->L->Y,      P->L->X + P->width, P->L->Y + P->height, PIXEL_SOLID, 5);
+		//if (i > 100) {
+		//  Covers.front()->health = 0;
+		//}
 
-		/*
+
+
 		if (IsFocused()) {
 			if (GetKey(VK_LEFT).bHeld) {
-				P
+				player->L->X -= 0.5;
 			}
 
 			if (GetKey(VK_RIGHT).bHeld) {
-				p.playerPositionRight(1);
+				player->L->X += 0.5;
 			}
 
 			if (GetKey(VK_UP).bPressed) {
 			}
 
-	}
-	*/
+		}
+
+
+
+		//this
+		Draw();
+		i++;
+		//Fill(LP->X, LP->Y,  LP->X + P->width, LP->Y + P->height, PIXEL_SOLID, 5);
+
+		
+
+		
+		
 
 
 
@@ -183,14 +220,11 @@ protected:
 
 int main()
 {
-	Location* locationPlayer = new Location(20, 30);
-	Player* player = new Player(locationPlayer);
+	//create player
 
-	Location* locationCover = new Location(30, 40);
-	Cover* cover = new Cover(locationCover, 30, 60);
+	//create covers
 
-
-    GameFunction* game = new GameFunction(player, cover);
+    GameFunction* game = new GameFunction();
 
     game->ConstructConsole(160, 160, 8, 8);
     game->Start();

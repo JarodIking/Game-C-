@@ -4,7 +4,7 @@ using namespace std;
 
 struct Player : public GameObject{
 	//constructor
-	Player(Location* l) : GameObject(l, 100, 20, 30) {
+	Player(Location* l) : GameObject(l, 100, 10, 10) {
 
 	}
 
