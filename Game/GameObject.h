@@ -2,7 +2,6 @@
 #include <iostream>
 #include "Location.h"
 
-
 using namespace std;
 
 struct GameObject {
@@ -58,8 +57,15 @@ struct GameObject {
 
 
 
-	bool IsCollided() {
-		return true;
+	bool IsCollided(GameObject* object) {
+		if(object->L->X < L->X + width &&
+			object->L->X + object->width > L->X &&
+			object->L->Y < L->Y + height &&
+			object->L->Y + object->height > L->Y
+			)
+			return true;
+
+		return false;
 	}
 
 	//height modifiers
@@ -77,6 +83,8 @@ struct GameObject {
 	double Width() {
 		return width;
 	}
+
+
 
 	//write move() function
 
