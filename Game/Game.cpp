@@ -194,8 +194,11 @@ protected:
 	}
 
 	void Setup() {
-		Location* locationPlayer = new Location(10, 140);
-		player = new Player(locationPlayer);
+		if (player == NULL) {
+			Location* locationPlayer = new Location(10, 140);
+			player = new Player(locationPlayer);
+
+		}
 
 
 		LevelGenerator::MakeCoversRow(Covers);
