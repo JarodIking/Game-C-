@@ -229,7 +229,6 @@ protected:
 		Bullets.clear();
 		BulletsInvaders.clear();
 
-		delete player;
 
 		invaderDirection = 1;
 		lvl++;
