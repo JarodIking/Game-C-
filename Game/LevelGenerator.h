@@ -7,19 +7,21 @@
 
 using namespace std;
 
-
+//All level generation functions here
 class LevelGenerator{
 	LevelGenerator() {
 
 	}
 
 public:
+	//generate rows based on level
 	static void MakeInvadersRow(list<GameObject*>& objects, int rows) {
 		for (int i = 0; i < rows; i++) {
 			InvadersRowGenerator(objects, 20 +  (i * 10));
 		}
 	}
 
+	//generate a row
 	static void MakeCoversRow(list<GameObject*>& objects) {
 		CoversRowGenerator(objects, 120);
 	}

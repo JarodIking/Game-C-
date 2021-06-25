@@ -2,6 +2,9 @@
 #include <iostream>
 #include "Location.h"
 
+
+//GameObject Handles all common properties of all objects like the player the invader and the covers
+
 using namespace std;
 
 struct GameObject {
