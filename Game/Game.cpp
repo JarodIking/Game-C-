@@ -45,14 +45,16 @@ protected:
 		//create screen
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
 
+		//fill in updated player coordinates
+		if (player->L->X != NULL && player->L->Y != NULL)
+			Fill(player->L->X, player->L->Y, player->L->X + player->width, player->L->Y + player->height, PIXEL_SOLID, FG_GREEN);
+
 		//fill in updated coordinates
 		DrawObjects(Covers);
 		DrawObjects(Invaders);
 		DrawObjects(Bullets);
 		DrawObjects(BulletsInvaders);
 		
-		//fill in updated player coordinates
-		Fill(player->L->X, player->L->Y, player->L->X + player->width,player->L->Y + player->height, PIXEL_SOLID, FG_GREEN);
 	}
 
 	//draw objects
@@ -166,7 +168,7 @@ protected:
 		//move the invaders
 		for (GameObject* object : objects) {
 			object->L->X += X * invaderDirection;
-			if (object->L->X >= 150 || object->L->X <= 0)
+			if (object->L->X >= 115 || object->L->X <= 0)
 				changeDirection = true;
 		}
 		//change direction of invaders
@@ -221,11 +223,9 @@ protected:
 	//setup the game
 	void Setup() {
 		if (player == NULL) {
-			Location* locationPlayer = new Location(10, 140);
+			Location* locationPlayer = new Location(7.5, 105);
 			player = new Player(locationPlayer);
-
 		}
-
 
 		LevelGenerator::MakeCoversRow(Covers);
 		LevelGenerator::MakeInvadersRow(Invaders, lvl);
@@ -243,7 +243,7 @@ protected:
 		 Bullets.clear();
 		 BulletsInvaders.clear();
 
-		 delete player;
+		 player = NULL;
 
 		 invaderDirection = 1;
 		 lvl = 1;
@@ -259,7 +259,6 @@ protected:
 		Invaders.clear();
 		Bullets.clear();
 		BulletsInvaders.clear();
-
 
 		invaderDirection = 1;
 		lvl++;
@@ -303,7 +302,7 @@ protected:
 		}
 
 		//fire bullet invader
-		int rnd = rand() % 150 / lvl;
+		int rnd = rand() % 300 / lvl;
 		if (rnd < 1) {
 			Invader = SelectShootingInvader(Invaders);
 			MakeBulletInvader(Invader);
@@ -312,17 +311,13 @@ protected:
 		//player movement
 		if (IsFocused()) {
 			if (GetKey(VK_LEFT).bHeld) {
-				if (player->L->X != 0)
-					player->L->X -= 0.5;
-				else
-					player->L->X = player->L->X;
+				if (player->L->X >= 0)
+					player->L->X -= 0.07;
 			}
 
 			if (GetKey(VK_RIGHT).bHeld) {
-				if(player->L->X != 150)
-					player->L->X += 0.5;
-				else
-					player->L->X = player->L->X;
+				if(player->L->X <= 112.5)
+					player->L->X += 0.07;
 			}
 
 			//fire player bullet
@@ -333,9 +328,9 @@ protected:
 		}
 
 		//GameObject movement 
-		UpdateBullets(Bullets, 1.5);
-		UpdateBulletsInvaders(BulletsInvaders, -0.5);
-		UpdateInvaders(Invaders, 0.05);
+		UpdateBullets(Bullets, 0.25);
+		UpdateBulletsInvaders(BulletsInvaders, -0.10);
+		UpdateInvaders(Invaders, 0.010);
 
 
 		//this
@@ -352,7 +347,7 @@ int main()
 {
     GameFunction* game = new GameFunction();
 
-    game->ConstructConsole(160, 160, 8, 8);
+    game->ConstructConsole(120, 120, 8, 8);
     game->Start();
 
     return 0;
