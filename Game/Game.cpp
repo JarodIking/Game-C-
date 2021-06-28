@@ -46,8 +46,11 @@ protected:
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
 
 		//fill in updated player coordinates
-		if (player->L->X != NULL && player->L->Y != NULL)
+		if (player->health < 6)
+			Fill(player->L->X, player->L->Y, player->L->X + player->width, player->L->Y + player->height, PIXEL_SOLID, FG_RED);
+		else
 			Fill(player->L->X, player->L->Y, player->L->X + player->width, player->L->Y + player->height, PIXEL_SOLID, FG_GREEN);
+
 
 		//fill in updated coordinates
 		DrawObjects(Covers);
