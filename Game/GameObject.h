@@ -26,12 +26,6 @@ struct GameObject {
 	double height;
 	double width;
 
-	enum objectType {
-		player,
-		bullet,
-		cover,
-		invader
-	};
 
 	//methods
 

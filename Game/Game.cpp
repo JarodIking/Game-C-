@@ -45,11 +45,6 @@ protected:
 		//create screen
 		Fill(0, 0, ScreenWidth(), ScreenHeight(), L' ');
 
-		//fill in updated player coordinates
-		if (player->health < 6)
-			Fill(player->L->X, player->L->Y, player->L->X + player->width, player->L->Y + player->height, PIXEL_SOLID, FG_RED);
-		else
-			Fill(player->L->X, player->L->Y, player->L->X + player->width, player->L->Y + player->height, PIXEL_SOLID, FG_GREEN);
 
 
 		//fill in updated coordinates
@@ -57,6 +52,13 @@ protected:
 		DrawObjects(Invaders);
 		DrawObjects(Bullets);
 		DrawObjects(BulletsInvaders);
+
+		//fill in updated player coordinates
+		if (player->health < 6)
+			Fill(player->L->X, player->L->Y, player->L->X + player->width, player->L->Y + player->height, PIXEL_SOLID, FG_RED);
+		else
+			Fill(player->L->X, player->L->Y, player->L->X + player->width, player->L->Y + player->height, PIXEL_SOLID, FG_GREEN);
+
 		
 	}
 
@@ -65,7 +67,7 @@ protected:
 		for (GameObject* object : objects) {
 			//check for empty elements in list
 			if (object != NULL && object->L != NULL) {
-				//check if object are alive
+				//check if object is alive
 				if (!object->DeadState()) {
 					//check object health and colour that object accordingly
 					if (object->health < 6) 
